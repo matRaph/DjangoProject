@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from enquete.views import index
+from enquetes.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('enquete.urls')),
+    path('', include('enquetes.urls')),
 ]
