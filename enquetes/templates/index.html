@@ -5,6 +5,17 @@
     <title>Mysite - Index</title>
 </head>
 <body>
-    <h1>Raphael Matias de Souza Avelino 20211014040035</h1>
+    {% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+        <li>
+            <a href="/enquetes/{{question.id}}/">{{question.question_text}} </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Nenhuma questão disponível.</p>
+    {% endif %}
 </body>
 </html>
+
