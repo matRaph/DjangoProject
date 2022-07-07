@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Detalhes{% endblock title %}
+
+{% block content %}
+
+
+    <form class="mb-5 mt-2" action="{% url 'enquetes:votacao' question.id %}" method="post">
+        
+        {%if error_message%}
+        <p><strong>{{error_message}}</strong></p>
+        {% endif %}
+
+        <legend >{{question.question_text}}</legend>
+
+        {% csrf_token %}
+
+        {% for choice in question.choice_set.all %}
+            <input class="form-check-input" type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">
+            <label class="form-check-label" for="choice{{ forloop.counter }}">
+                {{choice.choice_text}}
+            </label><br>
+        {% endfor %}
+        <button id="back-button" type="submit" class="btn btn-primary">Votar</button>
+    </form>
+
+    <a href="{% url 'enquetes:index' %}">
+        <button type="button" class="btn btn-outline-secondary">Retornar</button>
+    </a>
+{% endblock content %}

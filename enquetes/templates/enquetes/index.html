@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Enquetes{% endblock title %}
+
+{% block content %}
+    
+    {% if latest_question_list %}
+    <ul class="list-group">
+        {% for question in latest_question_list %}
+        <li class="list-group-item m-1">
+            <a class"question" class="list-group-item list-group-item-action" href="/enquetes/{{question.id}}/">{{question.question_text}} </a>
+        </li> 
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Nenhuma questão disponível.</p>
+    {% endif %}
+
+{% endblock content %}
+
+
+

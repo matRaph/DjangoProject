@@ -1,7 +1,5 @@
-from datetime import datetime
-from pyexpat import model
-from time import timezone
-from turtle import ondrag
+import datetime
+from django.utils import timezone
 from django.db import models
 
 # Create your models here.
@@ -10,8 +8,9 @@ class Question(models.Model):
     pub_date = models.DateTimeField('Data de publicação')
     def __str__(self):
         return self.question_text
-    def was_publishec_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days = 1)
+    def was_published_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days= 1) <= self.pub_date <= now
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
