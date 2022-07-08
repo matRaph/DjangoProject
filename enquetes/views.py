@@ -36,7 +36,7 @@ def vote(request, question_id):
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
-        return render(request, 'detalhes.html', {'question':question, 'error_message':"Você não selecionou uma opção",})
+        return render(request, 'enquetes/detalhes.html', {'question':question, 'error_message':"Você não selecionou uma opção",})
     else:
         selected_choice.votes += 1
         selected_choice.save()
